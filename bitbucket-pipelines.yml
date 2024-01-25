@@ -1,0 +1,7 @@
+pipelines:
+  branches:
+    main:
+      - step:
+          name: First Run
+          script:
+            - echo "Hello World!"
