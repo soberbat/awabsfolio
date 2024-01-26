@@ -8,7 +8,7 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   title: "Awab Alsaati | Portfolio",
-  icons: "/modern-house.png",
+  icons: "/images/favicon.png",
 };
 
 export default function RootLayout({

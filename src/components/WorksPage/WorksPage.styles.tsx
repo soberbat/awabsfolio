@@ -31,7 +31,7 @@ export const Back = styled.div`
 `;
 
 export const Pointer = styled.img.attrs({
-  src: "/pointer.png",
+  src: "/images/pointer.png",
 })`
   width: 80%;
   height: 80%;
