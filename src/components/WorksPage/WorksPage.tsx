@@ -4,7 +4,7 @@ import Project from "../Project/Project";
 import ProjectWindow from "../ProjectWindow/ProjectWindow";
 import useStore from "@/store/AppStore";
 import { data } from "@/data/data";
-import { PROJECT_PAGE_INVISIBLE } from "@/utils/config";
+import { PROJECT_PAGE_INVISIBLE } from "@/utils/AppConfig";
 
 const WorksPage = () => {
   const [activeProject, setActiveProject] = useState<number>(0);

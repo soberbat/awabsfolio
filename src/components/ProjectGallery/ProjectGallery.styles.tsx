@@ -1,4 +1,4 @@
-import { DataType, ImgSize, PadType, data } from "@/data/data";
+import { ImgSize, PadType } from "@/data/data.types";
 import styled, { css } from "styled-components";
 
 interface IImage {

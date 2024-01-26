@@ -1,4 +1,4 @@
-import { PosType } from "@/data/data";
+import { PosType } from "@/data/data.types";
 import { motion } from "framer-motion";
 import styled, { css } from "styled-components";
 
