@@ -1,19 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  PageContainer,
-  ProjectsContainer,
-  Background,
-  Triangle,
-  Back,
-  BackInnerContainer,
-  TriangleBorder,
-} from "./WorksPage.styles";
+import * as S from "./WorksPage.styles";
 import Project from "../Project/Project";
 import ProjectWindow from "../ProjectWindow/ProjectWindow";
 import useStore from "@/store/AppStore";
 import { data } from "@/data/data";
-
-const ProjectPageInvisible = "ProjectPageInvisible";
+import { PROJECT_PAGE_INVISIBLE } from "@/utils/config";
 
 const WorksPage = () => {
   const [activeProject, setActiveProject] = useState<number>(0);
@@ -21,41 +12,38 @@ const WorksPage = () => {
   const { setIsProjectVisible, setIsWorksPageVisible, lastEndingAnimation } =
     useStore();
 
-  useEffect(() => {
-    if (lastEndingAnimation === ProjectPageInvisible) {
-      setIsProjectMounted(false);
-    }
-  }, [lastEndingAnimation]);
-
   const onClick = useCallback((projectID: number) => {
     setIsProjectMounted(true);
     setIsProjectVisible(true);
     setActiveProject(projectID);
   }, []);
 
-  const onNavigationClick = useCallback(() => setIsWorksPageVisible(false), []);
+  const onNavigationClick = () => setIsWorksPageVisible(false);
+
+  useEffect(() => {
+    if (lastEndingAnimation === PROJECT_PAGE_INVISIBLE) {
+      setIsProjectMounted(false);
+    }
+  }, [lastEndingAnimation]);
 
   return (
-    <PageContainer>
-      <ProjectsContainer>
+    <S.PageContainer>
+      <S.ProjectsContainer>
         {data.map(({ name, id, pos }) => (
           <Project key={id} pos={pos} name={name} onClick={() => onClick(id)} />
         ))}
-      </ProjectsContainer>
+      </S.ProjectsContainer>
 
       {isProjectMounted && (
         <ProjectWindow activeProject={data[activeProject]} />
       )}
 
-      <Back onClick={onNavigationClick}>
-        <BackInnerContainer>
-          <Triangle />
-          <TriangleBorder />
-        </BackInnerContainer>
-      </Back>
+      <S.Back onClick={onNavigationClick}>
+        <S.Pointer />
+      </S.Back>
 
-      <Background />
-    </PageContainer>
+      <S.Background className="" />
+    </S.PageContainer>
   );
 };
 

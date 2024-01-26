@@ -1,16 +1,8 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useCallback, useState } from "react";
-import {
-  Container,
-  CornerDescription,
-  Description,
-  Info,
-  InnerContainer,
-  ProjectName,
-} from "./ProjectWindow.styles";
+import * as S from "./ProjectWindow.styles";
 import ProjectGallery from "../ProjectGallery/ProjectGallery";
-import { DataType, data } from "../../data/data";
 import useStore from "@/store/AppStore";
+import { DataType } from "@/data/data.types";
 
 interface IProjectWindow {
   activeProject: DataType;
@@ -32,17 +24,17 @@ const ProjectWindow = ({ activeProject }: IProjectWindow) => {
   }, [activeImage]);
 
   return (
-    <Container>
-      <InnerContainer>
+    <S.Container>
+      <S.InnerContainer>
         {isInfoVisible && (
           <>
-            <ProjectName>{name}</ProjectName>
-            <CornerDescription>
+            <S.ProjectName>{name}</S.ProjectName>
+            <S.CornerDescription>
               {workInfo.map((info) => (
-                <Info key={info}>{info}</Info>
+                <S.Info key={info}>{info}</S.Info>
               ))}
-              <Description>{description}</Description>
-            </CornerDescription>
+              <S.Description>{description}</S.Description>
+            </S.CornerDescription>
           </>
         )}
 
@@ -52,8 +44,8 @@ const ProjectWindow = ({ activeProject }: IProjectWindow) => {
           images={media}
           activeImage={activeImage}
         />
-      </InnerContainer>
-    </Container>
+      </S.InnerContainer>
+    </S.Container>
   );
 };
 

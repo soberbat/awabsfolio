@@ -20,7 +20,8 @@ export const BackgroundImage = styled.div`
   background-size: cover;
   z-index: 1;
 `;
-export const ColorOVerlay = styled.span`
+
+export const ColorOverlay = styled.span`
   background-color: white;
   opacity: 0.85;
   position: absolute;

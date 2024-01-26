@@ -1,25 +1,20 @@
 import React from "react";
-import {
-  Background,
-  ComingSoonWrapper,
-  Container,
-  PageInnerContainer,
-  Title,
-} from "./BlogPage.styles";
+import * as S from "./BlogPage.styles";
 import useStore from "@/store/AppStore";
 
 const BlogPage = () => {
   const { setIsBlogPageVisible } = useStore();
   const handleClick = () => setIsBlogPageVisible(false);
+
   return (
-    <Container onClick={handleClick}>
-      <PageInnerContainer>
-        <ComingSoonWrapper>
-          <Title>Coming Soon</Title>
-        </ComingSoonWrapper>
-        <Background className="" />
-      </PageInnerContainer>
-    </Container>
+    <S.Container onClick={handleClick}>
+      <S.PageInnerContainer>
+        <S.ComingSoonWrapper>
+          <S.Title>Coming Soon</S.Title>
+        </S.ComingSoonWrapper>
+        <S.Background className="" />
+      </S.PageInnerContainer>
+    </S.Container>
   );
 };
 

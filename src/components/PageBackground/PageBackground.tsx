@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BackgroundImage,
-  ColorOVerlay,
-  Container,
-} from "./PageBackground.styles";
+import * as S from "./PageBackground.styles";
 
 interface IPageBackground {
   className?: string;
@@ -11,10 +7,10 @@ interface IPageBackground {
 
 const PageBackground = ({ className }: IPageBackground) => {
   return (
-    <Container className={className}>
-      <ColorOVerlay />
-      <BackgroundImage />
-    </Container>
+    <S.Container className={className}>
+      <S.ColorOverlay />
+      <S.BackgroundImage />
+    </S.Container>
   );
 };
 

@@ -30,24 +30,9 @@ export const Back = styled.div`
   cursor: pointer;
 `;
 
-export const Triangle = styled.div`
-  rotate: -90deg;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-bottom: 40px solid black;
-`;
-export const TriangleBorder = styled(Triangle)`
-  border-bottom-color: white;
-  border-left-width: 19px;
-  border-right-width: 19px;
-  border-bottom-width: 38px;
-`;
-
-export const BackInnerContainer = styled.div`
-  position: relative;
+export const Pointer = styled.img.attrs({
+  src: "/pointer.png",
+})`
+  width: 80%;
+  height: 80%;
 `;

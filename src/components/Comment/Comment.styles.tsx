@@ -1,6 +1,10 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const DescriptionContainer = styled.div`
+export const DescriptionContainer = styled(motion.div).attrs({
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+})`
   width: 23.5%;
   display: flex;
   height: 100%;
@@ -17,6 +21,7 @@ export const Description = styled.p`
 `;
 
 export const Commenter = styled.span``;
+
 export const CommenterTitle = styled.span`
   text-transform: uppercase;
   font-size: 0.54rem;

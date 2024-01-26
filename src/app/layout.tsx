@@ -8,7 +8,6 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   title: "Awab Alsaati | Portfolio",
-  description: "...",
   icons: "/modern-house.png",
 };
 

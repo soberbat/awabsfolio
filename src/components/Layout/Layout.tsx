@@ -1,13 +1,14 @@
 import React, { FC, ReactNode, useEffect } from "react";
 import { Wrapper } from "./Layout.styles";
 import useStore from "@/store/AppStore";
-import { useAnimationControls } from "framer-motion";
+import { useAnimationControls, AnimationControls } from "framer-motion";
 
 interface ILayout {
   children: ReactNode;
 }
 
 const Layout: FC<ILayout> = ({ children }) => {
+  const controls = useAnimationControls();
   const {
     isProjectVisible,
     isWorksPageVisible,
@@ -16,33 +17,30 @@ const Layout: FC<ILayout> = ({ children }) => {
     setLastEndingAnimation,
   } = useStore();
 
-  const controls = useAnimationControls();
+  const handleAnimationStart = (animationName: string, isVisible: boolean) => {
+    controls.start(
+      isVisible ? `${animationName}Visible` : `${animationName}Invisible`
+    );
+  };
 
   useEffect(() => {
-    controls.start(
-      isProjectVisible ? "ProjectPageVisible" : "ProjectPageInvisible"
-    );
+    handleAnimationStart("ProjectPage", isProjectVisible);
   }, [isProjectVisible]);
 
   useEffect(() => {
-    controls.start(
-      isAboutPageVisible ? "AboutPageVisible" : "AboutPageInvisible"
-    );
+    handleAnimationStart("AboutPage", isAboutPageVisible);
   }, [isAboutPageVisible]);
 
   useEffect(() => {
-    controls.start(
-      isWorksPageVisible ? "WorksPageVisible" : "WorksPageInvisible"
-    );
+    handleAnimationStart("WorksPage", isWorksPageVisible);
   }, [isWorksPageVisible]);
 
   useEffect(() => {
-    console.log("---run");
-    controls.start(isBlogPageVisible ? "BlogPageVisible" : "BlogPageInvisible");
+    handleAnimationStart("BlogPage", isBlogPageVisible);
   }, [isBlogPageVisible]);
 
-  const onAnimationComplete = (e) => {
-    setLastEndingAnimation(e);
+  const onAnimationComplete = (definition: string) => {
+    setLastEndingAnimation(definition);
   };
 
   return (

@@ -14,7 +14,7 @@ interface IMultipleImage {
 export const Image = styled.img<IImage>(
   ({ isVisible, src, pos, objFit }) => css`
     opacity: ${isVisible ? 1 : 0};
-    transition: all ease-in-out 0.6s;
+    transition: all ease-in-out 0.4s;
     position: absolute;
     top: 0;
     left: 0;

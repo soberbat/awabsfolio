@@ -1,27 +1,21 @@
 import React from "react";
-import {
-  Background,
-  Container,
-  HeadlineContainer,
-  Highlighted,
-  Title,
-  Date,
-} from "./AboutPage.styles";
+import * as S from "./AboutPage.styles";
 import useStore from "@/store/AppStore";
 
 const AboutPage = () => {
   const { setIsAboutPageVisible } = useStore();
   const onClick = () => setIsAboutPageVisible(false);
+
   return (
-    <Container onClick={onClick}>
-      <HeadlineContainer>
-        <Highlighted>
-          Awab AlSaati, <Date>(b.1997)</Date>
-        </Highlighted>
-        <Title>architect/researcher from Damascus, based in Istanbul</Title>
-      </HeadlineContainer>
-      <Background />
-    </Container>
+    <S.Container onClick={onClick}>
+      <S.HeadlineContainer>
+        <S.Highlighted>
+          Awab AlSaati, <S.Date>(b.1997)</S.Date>
+        </S.Highlighted>
+        <S.Title>architect/researcher from Damascus, based in Istanbul</S.Title>
+      </S.HeadlineContainer>
+      <S.Background className="" />
+    </S.Container>
   );
 };
 

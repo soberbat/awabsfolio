@@ -1,17 +1,7 @@
-/* eslint-disable jsx-a11y/alt-text */
-// eslint-disable-next-line react/jsx-key
 import React, { useCallback } from "react";
-import { DataType } from "@/data/data";
-import {
-  Container,
-  Description,
-  DescriptionContainer,
-  Image,
-  InnerContainer,
-  MultipleImage,
-  MultipleImageContainer,
-} from "./ProjectGallery.styles";
+import * as S from "./ProjectGallery.styles";
 import Comment from "../Comment/Comment";
+import { DataType } from "@/data/data.types";
 
 interface IProjectGallery {
   images: DataType["media"];
@@ -37,20 +27,21 @@ const ProjectGallery = ({
   );
 
   return (
-    <Container onClick={onImageClick}>
-      <InnerContainer>
+    <S.Container onClick={onImageClick}>
+      <S.InnerContainer>
         {images.map((image, idx) => {
           const src = getSrc(idx, true);
           const isVisible = idx === activeImage;
           const isSingleImage = "pos" in image;
+          const shouldShowComment = isVisible && image.description;
 
           return !isSingleImage ? (
-            <MultipleImageContainer>
+            <S.MultipleImageContainer>
               {image.images.map(({ pos, description, objFit }, subIdx) => {
                 const src = getSrc(idx, false, subIdx);
 
                 return (
-                  <MultipleImage
+                  <S.MultipleImage
                     isVisible={isVisible}
                     pos={pos}
                     key={idx}
@@ -59,10 +50,10 @@ const ProjectGallery = ({
                   />
                 );
               })}
-            </MultipleImageContainer>
+            </S.MultipleImageContainer>
           ) : (
             <>
-              <Image
+              <S.Image
                 isVisible={isVisible}
                 pos={image.pos}
                 objFit={image.objFit}
@@ -70,12 +61,12 @@ const ProjectGallery = ({
                 src={src}
               />
 
-              {isVisible && image.description && <Comment />}
+              {shouldShowComment && <Comment />}
             </>
           );
         })}
-      </InnerContainer>
-    </Container>
+      </S.InnerContainer>
+    </S.Container>
   );
 };
 

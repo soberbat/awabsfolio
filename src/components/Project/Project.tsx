@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, ProjectName } from "./Project.styles";
-import { PosType } from "@/data/data";
+import { PosType } from "@/data/data.types";
 
 interface IProject {
   name: string;

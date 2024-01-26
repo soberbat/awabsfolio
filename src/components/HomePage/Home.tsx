@@ -1,13 +1,6 @@
 "use client";
 import React from "react";
-import {
-  Background,
-  Container,
-  InnerContainer,
-  Name,
-  Tab,
-  TabContainer,
-} from "./Home.styles";
+import * as S from "./Home.styles";
 import useStore from "@/store/AppStore";
 import { Tabs } from "./types";
 
@@ -26,25 +19,24 @@ const Home = () => {
         break;
       case Tabs.Blog:
         setIsBlogPageVisible(true);
-        console.log(tabName);
         break;
     }
   };
 
   return (
-    <Container>
-      <InnerContainer>
-        <Name>Awab ALSAATI</Name>
-        <TabContainer>
+    <S.Container>
+      <S.InnerContainer>
+        <S.Name>Awab ALSAATI</S.Name>
+        <S.TabContainer>
           {tabs.map((tab) => (
-            <Tab onClick={() => handleTabClick(tab)} key={tab}>
+            <S.Tab onClick={() => handleTabClick(tab)} key={tab}>
               {tab}
-            </Tab>
+            </S.Tab>
           ))}
-        </TabContainer>
-        <Background className="classname" />
-      </InnerContainer>
-    </Container>
+        </S.TabContainer>
+        <S.Background className="classname" />
+      </S.InnerContainer>
+    </S.Container>
   );
 };
 
