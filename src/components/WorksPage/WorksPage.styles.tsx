@@ -18,7 +18,7 @@ export const ProjectsContainer = styled.div`
 
 export const Background = styled(PageBackground)`
   div {
-    background-image: url("/images/works-bg.JPG");
+    background-image: url("/images/works-bg.jpg");
   }
 `;
 
