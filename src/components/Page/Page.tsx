@@ -6,8 +6,10 @@ import Layout from "../Layout/Layout";
 import AboutPage from "../AboutPage/AboutPage";
 import { TopRow } from "./Page.styles";
 import BlogPage from "../BlogPage/BlogPage";
+import usePreloder from "@/hooks/usePreloader";
 
 const Page = () => {
+  const { progress, isPreloaded, fileUrls } = usePreloder();
   return (
     <Layout>
       <TopRow>

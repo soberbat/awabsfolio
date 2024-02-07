@@ -64,7 +64,7 @@ export const data: DataType[] = [
       "Description",
     ],
     description:
-      " Kutlu Sokak Flat 1 is a small flat renovation of a basement floor. Intended for a young student, the aim was to make the dim small space habitable and fun for the tenant. Different colours were introduced together in an experimental project.",
+      "Kutlu Sokak Flat 1 is a small flat renovation of a basement floor. Intended for a young student, the aim was to make the dim small space habitable and fun for the tenant. Different colours were introduced together in an experimental project.",
     name: "Kutlu Flat 1",
     media: [
       {
