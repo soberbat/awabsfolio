@@ -1,18 +1,17 @@
 import { data } from "@/data/data";
-
-type PreloadUrlConfig = { [key: string]: any[] };
+import { PreloadUrlConfig } from "./types";
 
 export default () => {
   const preloadUrlConfig: PreloadUrlConfig = {};
 
   data.forEach(({ mediaPath, media }) => {
-    const images = media.map((mediaObj, i) => {
+    const images = media.map((mediaObj, index) => {
       if ("images" in mediaObj) {
         return [...Array(mediaObj.images.length)].map(
-          (_, index) => `/${mediaPath}/${i + 1}.${index + 1}.jpeg`
+          (_, idx) => `/${mediaPath}/${index + 1}.${idx + 1}.jpeg`
         );
       } else {
-        return `/${mediaPath}/${i + 1}.jpeg`;
+        return `/${mediaPath}/${index + 1}.jpeg`;
       }
     });
 

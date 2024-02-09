@@ -12,6 +12,7 @@ export const Container = styled(motion.div)`
   align-items: flex-end;
   justify-content: end;
   padding: 1% 2%;
+  color: #6f6f6f;
 `;
 
 export const Progress = styled.div`

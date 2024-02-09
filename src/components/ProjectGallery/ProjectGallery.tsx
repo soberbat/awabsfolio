@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import * as S from "./ProjectGallery.styles";
 import Comment from "../Comment/Comment";
 import { DataType } from "@/data/data.types";
+import useStore from "@/store/AppStore";
 
 interface IProjectGallery {
   images: DataType["media"];
@@ -16,21 +17,13 @@ const ProjectGallery = ({
   activeImage,
   onImageClick,
 }: IProjectGallery) => {
-  const getSrc = useCallback(
-    (idx: number, isSingleImage: boolean, subIdx?: number) => {
-      const indexIncremented = idx + 1;
-      const subIdxIncremented = subIdx! + 1;
-      const subText = !isSingleImage ? `.${subIdxIncremented}` : "";
-      return `/images/works/${mediaPath}/${indexIncremented}${subText}.jpeg`;
-    },
-    [mediaPath]
-  );
+  const imageSources = useStore().imageUrls[mediaPath];
 
   return (
     <S.Container onClick={onImageClick}>
       <S.InnerContainer>
         {images.map((image, idx) => {
-          const src = getSrc(idx, true);
+          const src = imageSources[idx];
           const isVisible = idx === activeImage;
           const isSingleImage = "pos" in image;
           const shouldShowComment = isVisible && image.description;
@@ -38,7 +31,7 @@ const ProjectGallery = ({
           return !isSingleImage ? (
             <S.MultipleImageContainer>
               {image.images.map(({ pos, description, objFit }, subIdx) => {
-                const src = getSrc(idx, false, subIdx);
+                const src = imageSources[idx][subIdx!];
 
                 return (
                   <S.MultipleImage

@@ -1,19 +1,7 @@
+import { AppStoreState, PreloadUrlConfig } from "@/utils/types";
 import { create } from "zustand";
 
-interface AppState {
-  isWorksPageVisible: boolean;
-  setIsWorksPageVisible: (val: boolean) => void;
-  isProjectVisible: boolean;
-  setIsProjectVisible: (val: boolean) => void;
-  isAboutPageVisible: boolean;
-  setIsAboutPageVisible: (val: boolean) => void;
-  isBlogPageVisible: boolean;
-  setIsBlogPageVisible: (val: boolean) => void;
-  lastEndingAnimation: string;
-  setLastEndingAnimation: (val: string) => void;
-}
-
-const useStore = create<AppState>((set) => ({
+const useStore = create<AppStoreState>((set) => ({
   isWorksPageVisible: false,
   setIsWorksPageVisible: (val) => set({ isWorksPageVisible: val }),
   isProjectVisible: false,
@@ -24,6 +12,8 @@ const useStore = create<AppState>((set) => ({
   setIsBlogPageVisible: (val) => set({ isBlogPageVisible: val }),
   lastEndingAnimation: "",
   setLastEndingAnimation: (val) => set({ lastEndingAnimation: val }),
+  imageUrls: {},
+  setImageUrls: (imageUrls: PreloadUrlConfig) => set({ imageUrls }),
 }));
 
 export default useStore;

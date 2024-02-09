@@ -10,11 +10,11 @@ import usePreloder from "@/hooks/usePreloader";
 import LoadingView from "../LoadingView/LoadingView";
 
 const Page = () => {
-  const { progress, isPreloaded, fileUrls } = usePreloder();
+  const { progress, isPreloaded } = usePreloder();
   return (
     <>
       {!isPreloaded ? (
-        <LoadingView progress={progress} />
+        <LoadingView progress={progress}></LoadingView>
       ) : (
         <Layout>
           <TopRow>

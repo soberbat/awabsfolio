@@ -1,40 +1,42 @@
+import { IPreloader, PreloadUrlConfig, Resolve } from "./types";
 import createImageUrls from "./createImageUrls";
-
-export interface IPreloader {
-  handleRequestEnd: (videoUrl: string) => void;
-  handleProgress: (progress: number) => void;
-}
-
-type Resolve = (videoUrl: string) => void;
 
 class Preloader {
   handleRequestEnd;
   handleProgress;
-  urls;
+  urlsToPreload: PreloadUrlConfig;
+  preloadedSources: PreloadUrlConfig;
   loadedImages = 0;
-  imageCount = 0;
+  imageCount = 60;
   progress = 0;
 
   constructor({ handleRequestEnd, handleProgress }: IPreloader) {
     this.handleRequestEnd = handleRequestEnd;
     this.handleProgress = handleProgress;
-    this.urls = createImageUrls()["saray-arkası"];
-    this.imageCount = this.urls.length;
-    this.preloadImages();
+    this.urlsToPreload = createImageUrls();
+    this.preloadedSources = {};
+    this.preloadAll();
   }
 
+  addPrefix = (url: string) => `/images/works${url}`;
+
   onLoad = (resolve: Resolve, xhr: XMLHttpRequest) => {
-    resolve(URL.createObjectURL(xhr.response));
     this.loadedImages++;
-    this.handleProgress((this.loadedImages / this.imageCount) * 100);
+
+    const percantage = this.loadedImages / this.imageCount;
+    this.handleProgress(Math.ceil(percantage * 100));
+
+    if (this.loadedImages === this.imageCount) {
+      this.handleRequestEnd(this.preloadedSources);
+    }
+
+    resolve(URL.createObjectURL(xhr.response));
   };
 
-  startLoading = (url: string) => {
+  preload = (url: string) => {
     return new Promise((resolve: Resolve, _) => {
       const xhr = new XMLHttpRequest();
-
       xhr.onload = () => this.onLoad(resolve, xhr);
-      // xhr.onprogress = this.onProgress;
 
       xhr.open("GET", url, true);
       xhr.responseType = "blob";
@@ -42,16 +44,21 @@ class Preloader {
     });
   };
 
-  preloadImages = () => {
-    this.urls.forEach(async (url) => {
-      const videoUrl = await this.startLoading(`/images/works/${url}`);
-    });
-  };
+  preloadAll = async () => {
+    for (const key in this.urlsToPreload) {
+      this.preloadedSources[key] = await Promise.all(
+        this.urlsToPreload[key].map(async (url) => {
+          if (Array.isArray(url)) {
+            return await Promise.all(
+              url.map(async (url) => await this.preload(this.addPrefix(url)))
+            );
+          }
 
-  // getFileUrl = async () => {
-  //   const videoUrl = await this.startLoading();
-  //   this.handleRequestEnd(videoUrl);
-  // };
+          return await this.preload(this.addPrefix(url));
+        })
+      );
+    }
+  };
 }
 
 export default Preloader;
