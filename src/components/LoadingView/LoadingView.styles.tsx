@@ -32,7 +32,7 @@ export const Percentage = styled.h1`
 `;
 
 export const ProgressBar = styled(motion.div)`
-  height: 1%;
+  height: 0.4%;
   background-color: #6f6f6f;
   position: absolute;
   bottom: 0;
