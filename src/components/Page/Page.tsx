@@ -7,18 +7,25 @@ import AboutPage from "../AboutPage/AboutPage";
 import { TopRow } from "./Page.styles";
 import BlogPage from "../BlogPage/BlogPage";
 import usePreloder from "@/hooks/usePreloader";
+import LoadingView from "../LoadingView/LoadingView";
 
 const Page = () => {
   const { progress, isPreloaded, fileUrls } = usePreloder();
   return (
-    <Layout>
-      <TopRow>
-        <AboutPage />
-        <Home />
-        <WorksPage />
-      </TopRow>
-      <BlogPage />
-    </Layout>
+    <>
+      {!isPreloaded ? (
+        <LoadingView progress={progress} />
+      ) : (
+        <Layout>
+          <TopRow>
+            <AboutPage />
+            <Home />
+            <WorksPage />
+          </TopRow>
+          <BlogPage />
+        </Layout>
+      )}
+    </>
   );
 };
 

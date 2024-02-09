@@ -13,7 +13,7 @@ const usePreloder = () => {
   };
 
   const handleProgress = (progress: number) => {
-    setProgress(Math.ceil(progress * 100));
+    setProgress(progress);
   };
 
   useEffect(() => {

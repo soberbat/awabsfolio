@@ -11,23 +11,22 @@ class Preloader {
   handleRequestEnd;
   handleProgress;
   urls;
+  loadedImages = 0;
+  imageCount = 0;
+  progress = 0;
 
   constructor({ handleRequestEnd, handleProgress }: IPreloader) {
     this.handleRequestEnd = handleRequestEnd;
     this.handleProgress = handleProgress;
-    this.urls = createImageUrls();
-
-    console.log(this.urls);
+    this.urls = createImageUrls()["saray-arkası"];
+    this.imageCount = this.urls.length;
     this.preloadImages();
   }
 
   onLoad = (resolve: Resolve, xhr: XMLHttpRequest) => {
     resolve(URL.createObjectURL(xhr.response));
-  };
-
-  onProgress = (event: any) => {
-    const progress = event.loaded / event.total;
-    this.handleProgress(progress);
+    this.loadedImages++;
+    this.handleProgress((this.loadedImages / this.imageCount) * 100);
   };
 
   startLoading = (url: string) => {
@@ -35,7 +34,7 @@ class Preloader {
       const xhr = new XMLHttpRequest();
 
       xhr.onload = () => this.onLoad(resolve, xhr);
-      xhr.onprogress = this.onProgress;
+      // xhr.onprogress = this.onProgress;
 
       xhr.open("GET", url, true);
       xhr.responseType = "blob";
@@ -44,9 +43,8 @@ class Preloader {
   };
 
   preloadImages = () => {
-    this.urls["saray-arkası"].map(async (url) => {
+    this.urls.forEach(async (url) => {
       const videoUrl = await this.startLoading(`/images/works/${url}`);
-      console.log(videoUrl);
     });
   };
 
