@@ -8,18 +8,36 @@ export const Container = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   background-color: white;
+  color: #6f6f6f;
+`;
+
+export const InnerContainer = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: end;
-  padding: 1% 2%;
-  color: #6f6f6f;
+  position: relative;
 `;
 
 export const Progress = styled.div`
   font-size: 5rem;
+  padding: 1% 2%;
 `;
 
 export const Percentage = styled.h1`
   display: inline-block;
   font-size: 1.3rem;
+  font-weight: 900;
+`;
+
+export const ProgressBar = styled(motion.div)`
+  height: 1%;
+  background-color: #6f6f6f;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
 `;

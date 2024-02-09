@@ -11,7 +11,7 @@ const usePreloder = () => {
 
   const handleRequestEnd = (imageUrls: PreloadUrlConfig) => {
     setImageUrls(imageUrls);
-    setisPreloaded(true);
+    // setisPreloaded(true);
   };
 
   const handleProgress = (progress: number) => {
