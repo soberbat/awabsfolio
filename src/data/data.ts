@@ -146,7 +146,7 @@ export const data: DataType[] = [
     mediaPath: "library-1",
     pos: { bottom: "40%", left: "30%" },
     workInfo: [
-      "Client: MDL Beast",
+      "Client: Levent Ozmen",
       "Date: March 2022",
       "Status: Proposal",
       "Description",

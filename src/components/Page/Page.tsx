@@ -8,23 +8,23 @@ import { TopRow } from "./Page.styles";
 import BlogPage from "../BlogPage/BlogPage";
 import usePreloder from "@/hooks/usePreloader";
 import LoadingView from "../LoadingView/LoadingView";
+import { AnimatePresence } from "framer-motion";
 
 const Page = () => {
   const { progress, isPreloaded } = usePreloder();
   return (
     <>
-      {!isPreloaded ? (
-        <LoadingView progress={progress}></LoadingView>
-      ) : (
-        <Layout>
-          <TopRow>
-            <AboutPage />
-            <Home />
-            <WorksPage />
-          </TopRow>
-          <BlogPage />
-        </Layout>
-      )}
+      <AnimatePresence>
+        {!isPreloaded && <LoadingView progress={progress} />}
+      </AnimatePresence>
+      <Layout>
+        <TopRow>
+          <AboutPage />
+          <Home />
+          <WorksPage />
+        </TopRow>
+        <BlogPage />
+      </Layout>
     </>
   );
 };
