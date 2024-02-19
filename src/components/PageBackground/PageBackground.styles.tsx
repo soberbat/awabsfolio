@@ -1,4 +1,6 @@
+import { mediaLarge } from "@/utils/media";
 import styled from "styled-components";
+import css from "styled-jsx/css";
 
 export const Container = styled.div`
   position: absolute;
@@ -19,6 +21,11 @@ export const BackgroundImage = styled.div`
   background-position: center;
   background-size: cover;
   z-index: 1;
+  background-repeat: no-repeat;
+  background-position-x: 10%;
+  ${mediaLarge(css`
+    background-position-x: 0%;
+  `)}
 `;
 
 export const ColorOverlay = styled.span`

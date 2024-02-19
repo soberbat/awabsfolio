@@ -1,4 +1,5 @@
 import { ImgSize, PadType } from "@/data/data.types";
+import { mediaLarge } from "@/utils/media";
 import styled, { css } from "styled-components";
 
 interface IImage {
@@ -19,24 +20,32 @@ export const Image = styled.img<IImage>(
     top: 0;
     left: 0;
     height: 100%;
+    object-fit: contain;
     width: 100%;
-    padding-left: ${pos.paddingLeft};
-    padding-right: ${pos.paddingRight};
-    padding-top: ${pos.paddingTop};
-    padding-bottom: ${pos.paddingBottom};
-    object-fit: ${objFit ?? "cover"};
-    background-image: url(src);
-    background-color: ${objFit ? "white" : ""};
     cursor: pointer;
+
+    ${mediaLarge(css`
+      padding-left: ${pos.paddingLeft};
+      padding-right: ${pos.paddingRight};
+      padding-top: ${pos.paddingTop};
+      padding-bottom: ${pos.paddingBottom};
+      object-fit: ${objFit ?? "cover"};
+      background-image: url(src);
+      background-color: ${objFit ? "white" : ""};
+    `)}
   `
 );
 
 export const Container = styled.div`
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: -webkit-fill-available;
   top: 0;
   left: 0;
+
+  ${mediaLarge(css`
+    height: 100vh;
+  `)}
 `;
 
 export const InnerContainer = styled.div`

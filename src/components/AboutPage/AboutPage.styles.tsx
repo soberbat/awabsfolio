@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { PageContainer } from "../WorksPage/WorksPage.styles";
 import PageBackground from "../PageBackground/PageBackground";
+import { mediaLarge } from "@/utils/media";
+import css from "styled-jsx/css";
 
 export const Container = styled(PageContainer)`
   display: flex;
@@ -24,7 +26,12 @@ export const HeadlineContainer = styled.div`
   z-index: 1;
   color: black;
   line-height: 1.6rem;
-  margin-left: 2%;
+  text-align: center;
+
+  ${mediaLarge(css`
+    margin-left: 2%;
+    text-align: unset;
+  `)}
 `;
 
 export const Date = styled.span`

@@ -1,5 +1,7 @@
+import { mediaLarge } from "@/utils/media";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import css from "styled-jsx/css";
 
 export const Container = styled(motion.div).attrs({
   exit: { opacity: 0, filter: "blur(10px)" },
@@ -8,10 +10,17 @@ export const Container = styled(motion.div).attrs({
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: -webkit-fill-available;
   background-color: white;
   color: #6f6f6f;
   z-index: 1;
+  padding: unset;
+  padding: 1%;
+
+  ${mediaLarge(css`
+    height: 100vh;
+    padding: unset;
+  `)}
 `;
 
 export const InnerContainer = styled.div`
