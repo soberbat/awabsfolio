@@ -38,7 +38,6 @@ export const Image = styled.img<IImage>(
 
 export const Container = styled.div`
   position: absolute;
-  border: 1px solid pink;
   width: 100vw;
   height: 100%;
   top: 0;
