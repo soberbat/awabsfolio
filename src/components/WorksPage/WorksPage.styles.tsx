@@ -6,14 +6,14 @@ import css from "styled-jsx/css";
 
 export const PageContainer = styled(motion.div)`
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   position: relative;
   display: inline-block;
 `;
 
 export const ProjectsContainer = styled.div`
   width: 100%;
-  height: 100dvh;
+  height: 100%;
   position: relative;
   z-index: 1;
   display: flex;
